@@ -56,3 +56,16 @@ app.patch("/login",(req,res)=>{
 // app.use("/",(req,res)=>{
  //   res.send("This is response from server");
 //});  This should be your last route because it will match every request and it will not execute the next route even if it matches the request
+
+
+//step7:"Data will be sent in the query string" like said in step5 grt method, we can access the data sent in the query string using req.query object and it will be executed when the user accesses the login page url: http://localhost:3000/login?name=VGBTE&age=22 with a GET request and the data will be sent in the query string of the URL
+app.get("/login",(req,res)=>{
+    console.log(req.query);
+});
+//A query string is the part after ? in the URL.
+//http://localhost:3000/login?email=vidhan@gmail.com&password=123
+///login
+//   ?
+//email=vidhan@gmail.com
+//&
+//password=123
