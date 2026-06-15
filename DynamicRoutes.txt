@@ -1,0 +1,176 @@
+# Dynamic Routes in Express.js
+
+## What is a Dynamic Route?
+
+A dynamic route is a route in which some part of the URL can change.
+
+### Normal (Static) Route
+
+```js
+app.get("/profile", (req, res) => {
+    res.send("Profile");
+});
+```
+
+Works only for:
+
+/profile
+
+
+### Dynamic Route
+
+
+app.get("/user/:id", (req, res) => {
+    res.send("User");
+});
+
+
+Works for:
+/user/101
+/user/102
+/user/vidhan
+/user/abc123
+
+
+Here, `:id` is called a **Route Parameter**.
+
+Think:
+
+:userId
+:id
+:postId
+
+
+means:
+
+> "Express, whatever comes here, store it for me."
+
+---
+
+# How to Create Dynamic Routes
+
+Syntax:
+
+app.get("/route/:parameterName", (req, res) => {
+    // code
+});
+```
+
+Example:
+
+app.get("/user/:id", (req, res) => {
+    res.send("User Route");
+});
+```
+
+Here:
+
+/user/:id
+```
+
+means:
+/user/101
+/user/202
+/user/vidhan
+```
+
+All of these URLs will match.
+
+---
+
+# How to Read Dynamic Routes
+
+Express stores dynamic values inside:
+
+req.params
+
+Example:
+
+app.get("/user/:id", (req, res) => {
+    console.log(req.params);
+    res.send(req.params);
+});
+
+
+Visit:
+
+```text
+http://localhost:3000/user/101
+```
+
+Output:
+
+```js
+{ id: "101" }
+```
+
+---
+
+Visit:
+
+```text
+http://localhost:3000/user/vidhan
+```
+
+Output:
+
+```js
+{ id: "vidhan" }
+```
+
+---
+
+# Reading a Specific Parameter
+
+Instead of:
+
+```js
+req.params
+```
+
+you can read a particular parameter:
+
+```js
+app.get("/user/:id", (req, res) => {
+    console.log(req.params.id);
+
+    res.send(req.params.id);
+});
+```
+
+Visit:
+
+```text
+/user/101
+```
+
+Output:
+
+```text
+101
+```
+
+---
+
+# Multiple Dynamic Parameters
+
+```js
+app.get("/user/:userId/post/:postId", (req, res) => {
+    res.send(req.params);
+});
+```
+
+Visit:
+
+```text
+/user/101/post/55
+```
+
+Output:
+
+```js
+{
+    userId: "101",
+    postId: "55"
+}
+```
