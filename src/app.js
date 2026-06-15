@@ -69,3 +69,11 @@ app.get("/login",(req,res)=>{
 //email=vidhan@gmail.com
 //&
 //password=123
+
+//Step8:Dynamic Routing
+app.get("/login/:name/:age",(req,res)=>{
+    console.log(req.params);//req.params is used to access the data sent in the URL and it will be executed when the user accesses the login page url: http://localhost:3000/login/VGBTE/22 with a GET request and the data will be sent in the URL 
+    res.send("This is response from dynamic routing");
+}  ); 
+//Exapmple url: http://localhost:3000/login/VGBTE/22
+//output: { name: 'VGBTE', age: '22' } in the console and "This is response from dynamic routing" in the browser
