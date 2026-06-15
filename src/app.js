@@ -51,3 +51,8 @@ app.delete("/login",(req,res)=>{
 app.patch("/login",(req,res)=>{
     res.send("This is response from PATCH request to login page");
 });
+
+//step6:Hirearchy of routes matters in express and the order of routes is important in express because it will execute the first route that matches the request and it will not execute the next route even if it matches the request url: http://localhost:3000/login with a GET request will execute the first route and it will not execute the second route even if it matches the request
+// app.use("/",(req,res)=>{
+ //   res.send("This is response from server");
+//});  This should be your last route because it will match every request and it will not execute the next route even if it matches the request
