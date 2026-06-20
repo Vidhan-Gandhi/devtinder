@@ -1,21 +1,7 @@
-const mongoose = require('mongoose'); // Importing the mongoose library
-// This function will handle the connection to the MongoDB database using async/await syntax.
-const connectDB = async () => {
-    try {
-        // 1. TRY to do the slow/risky thing
-        await mongoose.connect(
-            "mongodb+srv://namastedev:vV0QOqSaDbM8FCWe@devtinder.sfstvbg.mongodb.net/?appName=DevTinder"
-        );
-        
-        // 2. If the line above works, this line runs next!
-        console.log("Database connected successfully");
+// Best Practise is that server should start listening only after the database connection is established. This ensures that the application is fully ready to handle requests and interact with the database without running into issues related to unestablished connections.
 
-    } catch (err) {
-        // 3. If the connect() fails, the code INSTANTLY jumps down here.
-        // It skips the success console.log entirely.
-        console.error("Database connection failed", err);
-    }
+const mongoose=require('mongoose');
+const connectDB=async ()=>{
+        await mongoose.connect("mongodb+srv://namastedev:vV0QOqSaDbM8FCWe@devtinder.sfstvbg.mongodb.net/?appName=DevTinder");
 };
-
-// Now you just call the function! No .then() or .catch() needed down here.
-connectDB();
+module.exports=connectDB;
